@@ -59,6 +59,25 @@ else
     md5sum addons.xml | awk '{print $1}' > addons.xml.md5
 fi
 
+# 6. Generate .nojekyll to prevent GitHub Pages Jekyll build errors
+echo "Generating .nojekyll and index.html..."
+touch .nojekyll
+
+# Generate a basic index.html for visitors
+cat > index.html << 'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kodi Addon Repository</title>
+</head>
+<body>
+    <h1>My Kodi Repository</h1>
+    <p>To install these addons, add this repository URL into Kodi's File Manager:</p>
+    <code>[Your GitHub Pages URL]</code>
+</body>
+</html>
+EOF
+
 echo "============================================="
 echo "Build Complete! Master Repository is ready."
 echo "============================================="
