@@ -63,51 +63,48 @@ fi
 echo "Generating .nojekyll and index.html..."
 touch .nojekyll
 
-# Generate a dynamic index.html with zip links for visitors
-echo "Generating index.html..."
-cat > index.html << 'EOF'
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Kodi Addon Repository</title>
-    <style>
-        body { font-family: -apple-system, sans-serif; padding: 40px; line-height: 1.6; max-width: 800px; margin: 0 auto; color: #333; }
-        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .instructions { background: #f9f9f9; padding: 15px; border-left: 4px solid #0366d6; margin: 20px 0; }
-        code { background: #eee; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin: 10px 0; }
-        a { text-decoration: none; color: #0366d6; font-weight: 500; font-size: 16px; }
-        a:hover { text-decoration: underline; }
-    </style>
-</head>
-<body>
-    <h1>My Kodi Repository</h1>
+# Generate Kodi-compatible index.html files (Recursive Apache mod_autoindex style)
+echo "Generating Kodi-compatible index.html files for File Manager..."
+
+generate_indexes() {
+    local dir="$1"
+    local title="Index of /$(basename "$dir")"
+    if [ "$dir" = "." ]; then
+        title="Kodi Addon Repository"
+    fi
     
-    <div class="instructions">
-        <h3>How to Install Automactially (Recommended)</h3>
-        <p>You do not need to download these files! Simply open Kodi and go to <strong>File Manager &gt; Add Source</strong>.</p>
-        <p>Type in the exact URL of this webpage (e.g. <code>https://yourusername.github.io/kodi-repo/</code>) and Kodi will automatically read the hidden files and install the repository.</p>
-    </div>
+    local index_file="$dir/index.html"
+    
+    # Kodi's scraper is extremely strict and expects exactly this standard Apache format
+    echo "<html><head><title>$title</title></head><body><h1>$title</h1><hr><pre>" > "$index_file"
+    echo "<a href=\"../\">../</a>" >> "$index_file"
+    
+    # List directories (with trailing slash so Kodi knows they are folders)
+    for d in "$dir"/*/; do
+        if [ -d "$d" ]; then
+            local foldername="$(basename "$d")"
+            # Ignore hidden or repo system folders
+            if [[ "$foldername" != "repo" && "$foldername" != "packages" && "$foldername" != ".*" ]]; then
+                echo "<a href=\"$foldername/\">$foldername/</a>" >> "$index_file"
+                generate_indexes "$d"
+            fi
+        fi
+    done
+    
+    # List files (exclude index.html and bash scripts)
+    for f in "$dir"/*; do
+        if [ -f "$f" ]; then
+            local filename="$(basename "$f")"
+            if [[ "$filename" != "index.html" && "$filename" != "build_repo.sh" && "$filename" != ".*" ]]; then
+                echo "<a href=\"$filename\">$filename</a>" >> "$index_file"
+            fi
+        fi
+    done
+    
+    echo "</pre><hr></body></html>" >> "$index_file"
+}
 
-    <hr>
-
-    <h3>Direct Downloads (Manual Installation via USB)</h3>
-    <p>If you prefer to install from a zip file manually, you can download them below:</p>
-    <ul>
-EOF
-
-# Find all zip files and generate HTML links
-for zip_file in $(find . -mindepth 2 -type f -name "*.zip" | sed 's|^\./||' | sort); do
-    filename=$(basename "$zip_file")
-    echo "        <li>&#128194; <a href=\"$zip_file\">Download $filename</a></li>" >> index.html
-done
-
-cat >> index.html << 'EOF'
-    </ul>
-</body>
-</html>
-EOF
+generate_indexes "."
 
 echo "============================================="
 echo "Build Complete! Master Repository is ready."
