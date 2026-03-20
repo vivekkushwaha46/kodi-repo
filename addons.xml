@@ -26,10 +26,10 @@
     </extension>
 </addon>
 
-<addon id="skin.nimbus" version="1.0.2" name="Nimbus"
+<addon id="skin.nimbus" version="1.0.3" name="Nimbus"
 	provider-name="Ivar Brandt">
 	<requires>
-		<import addon="xbmc.gui" version="5.15.0" />
+		<import addon="xbmc.gui" version="5.14.0" />
 		<import addon="script.nimbus.helper" version="0.0.52"/>
 	</requires>
 	<extension point="xbmc.gui.skin" debugging="false">
