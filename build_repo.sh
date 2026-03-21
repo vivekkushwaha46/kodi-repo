@@ -1,10 +1,14 @@
 #!/bin/bash
 
 # Configuration
-# Resolving the absolute path for the Kodi dev directory assuming this script is in kodi-repo/
-KODI_DIR="../Kodi"
+# Using absolute paths for robustness
+KODI_DIR="/Users/imvivek/work/Kodi"
 FENLIGHT_DIR="$KODI_DIR/fenlight-am"
 SKIN_DIR="$KODI_DIR/skin.nimbus"
+REPO_DIR="/Users/imvivek/work/kodi-repo"
+
+# Ensure we are in the repo directory
+cd "$REPO_DIR" || exit 1
 
 echo "Building Master Kodi Repository..."
 
