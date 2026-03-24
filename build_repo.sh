@@ -5,7 +5,7 @@
 KODI_DIR="/Users/imvivek/work/Kodi"
 FENLIGHT_DIR="$KODI_DIR/fenlight-am"
 SKIN_DIR="$KODI_DIR/skin.nimbus"
-REPO_DIR="/Users/imvivek/work/kodi-repo"
+REPO_DIR="/Users/imvivek/work/Kodi/kodi-repo"
 
 # Ensure we are in the repo directory
 cd "$REPO_DIR" || exit 1
