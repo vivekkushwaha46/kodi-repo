@@ -51,6 +51,19 @@ echo "" >> addons.xml
 sed 's/<?xml.*?>//g' "$SKIN_DIR"/packages/script.nimbus.helper/addon.xml >> addons.xml
 echo "" >> addons.xml
 
+# Zip and Append Nimbus Repository
+echo "Packaging repository.nimbus..."
+cd repository.nimbus || exit 1
+zip -r repository.nimbus-1.0.0.zip addon.xml > /dev/null
+if command -v md5 >/dev/null 2>&1; then
+    md5 -q repository.nimbus-1.0.0.zip > repository.nimbus-1.0.0.zip.md5
+else
+    md5sum repository.nimbus-1.0.0.zip | awk '{print $1}' > repository.nimbus-1.0.0.zip.md5
+fi
+cd ..
+sed 's/<?xml.*?>//g' repository.nimbus/addon.xml >> addons.xml
+echo "" >> addons.xml
+
 cat >> addons.xml << 'EOF'
 </addons>
 EOF
