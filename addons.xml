@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.fenlight.am" name="FenLight AM" provider-name="AnonyMouse" version="10.0.5">
+<addon id="plugin.video.fenlight.am" name="FenLight AM" provider-name="AnonyMouse" version="10.0.6">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.pil" version="1.1.7"/>
@@ -26,7 +26,7 @@
     </extension>
 </addon>
 
-<addon id="skin.nimbus" version="2.0.5" name="Nimbus"
+<addon id="skin.nimbus" version="2.0.6" name="Nimbus"
 	provider-name="Ivar Brandt">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0" />
