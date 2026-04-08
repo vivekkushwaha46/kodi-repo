@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.fenlight.am" name="FenLight AM" provider-name="AnonyMouse" version="10.0.6">
+<addon id="plugin.video.fenlight.am" name="FenLight AM" provider-name="AnonyMouse" version="10.0.7">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.pil" version="1.1.7"/>
@@ -25,8 +25,8 @@
         <news>INFO: For latest changes see Changelog within Tools of add-on.</news>
     </extension>
 </addon>
-
-<addon id="skin.nimbus" version="2.0.6" name="Nimbus"
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="skin.nimbus" version="2.0.7" name="Nimbus"
 	provider-name="Ivar Brandt">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0" />
@@ -56,46 +56,5 @@
 		<description lang="en_NZ">Nimbus Skin</description>
 		<description lang="en_US">Nimbus Skin</description>
 	</extension>
-</addon>
+</addon></addons>
 
-<addon id="script.nimbus.helper" name="Nimbus Helper" version="2.0.0" provider-name="Ivar Brandt">
-    <requires>
-        <import addon="xbmc.python" version="3.0.0"/>
-        <import addon="script.module.requests" version="2.19.1"/>
-        <import addon="script.module.pil" version="1.1.7"/>
-    </requires>
-    <extension point="xbmc.python.library" library="resources/lib/default.py"/>
-    <extension point="xbmc.service" library="resources/lib/service.py" start="startup" />
-    <extension point="xbmc.addon.metadata">
-        <news />
-        <platform>all</platform>
-        <license>GPL-2.0-only</license>
-        <forum />
-        <source />
-        <assets>
-            <icon>resources/media/icon.png</icon>
-            <fanart>resources/media/fanart.jpg</fanart>
-        </assets>
-        <description lang="en_GB">Nimbus Helper for the Nimbus Skin.</description>
-        <description lang="en_NZ">Nimbus Helper for the Nimbus Skin.</description>
-        <description lang="en_US">Nimbus Helper for the Nimbus Skin.</description>
-    </extension>
-</addon>
-
-
-<addon id="repository.nimbus" name="Nimbus Repository" version="1.0.1" provider-name="Ivar Brandt, AnonyMouse">
-    <extension point="xbmc.addon.repository" name="Nimbus Repository">
-        <dir>
-            <info compressed="false">https://vivekkushwaha46.github.io/kodi-repo/addons.xml</info>
-            <checksum>https://vivekkushwaha46.github.io/kodi-repo/addons.xml.md5</checksum>
-            <datadir zip="true">https://vivekkushwaha46.github.io/kodi-repo/</datadir>
-        </dir>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>Nimbus Repository</summary>
-        <description>Official repository for the Nimbus Kodi Skin and FenLight AM Addon.</description>
-        <platform>all</platform>
-    </extension>
-</addon>
-
-</addons>
