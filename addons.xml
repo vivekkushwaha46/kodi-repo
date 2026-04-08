@@ -25,7 +25,7 @@
         <news>INFO: For latest changes see Changelog within Tools of add-on.</news>
     </extension>
 </addon>
-<addon id="skin.nimbus" version="2.2.0" name="Nimbus"
+<addon id="skin.nimbus" version="2.3.0" name="Nimbus"
 	provider-name="Ivar Brandt">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0" />
