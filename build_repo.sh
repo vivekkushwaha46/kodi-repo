@@ -54,9 +54,9 @@ echo "" >> addons.xml
 # Zip and Append Nimbus Repository
 echo "Packaging repository.nimbus..."
 rm -f repository.nimbus/*.zip repository.nimbus/*.md5
-zip -r repository.nimbus/repository.nimbus-1.0.1.zip repository.nimbus/addon.xml > /dev/null
+zip -r repository.nimbus/repository.nimbus-1.0.2.zip repository.nimbus/addon.xml > /dev/null
 if command -v md5 >/dev/null 2>&1; then
-    md5 -q repository.nimbus/repository.nimbus-1.0.1.zip > repository.nimbus/repository.nimbus-1.0.1.zip.md5
+    md5 -q repository.nimbus/repository.nimbus-1.0.2.zip > repository.nimbus/repository.nimbus-1.0.2.zip.md5
 else
     md5sum repository.nimbus/repository.nimbus-1.0.1.zip | awk '{print $1}' > repository.nimbus/repository.nimbus-1.0.1.zip.md5
 fi
